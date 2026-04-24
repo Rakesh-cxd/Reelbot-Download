@@ -23,7 +23,7 @@ ReelBot chains your own **Claude/OpenAI** → **ElevenLabs** → **Grok** accoun
 | **macOS 12+** | `ReelBot.dmg` |
 | **Windows 10+** | `ReelBot.exe` |
 
-Get the latest release above, or visit the [main repository](https://github.com/Rakesh-cxd/reelbot) for build-from-source instructions.
+Get the latest release above.
 
 ---
 
@@ -55,10 +55,10 @@ Get the latest release above, or visit the [main repository](https://github.com/
 
 3. **Generate** — pick Genre → Video, paste titles, or use a custom template. Click **Start**.
 
-See the [full README](https://github.com/Rakesh-cxd/reelbot/blob/main/README.md) for detailed usage, troubleshooting, and cost breakdown.
+Detailed usage, troubleshooting, and cost breakdown are included in the app after installation.
 
 ---
 
 ## License
 
-MIT — see [main repo](https://github.com/Rakesh-cxd/reelbot).
+MIT License
