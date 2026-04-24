@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReelBot — AI Video Generator</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0a14;color:#fff;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.container{max-width:960px;margin:0 auto;padding:0 24px}
+
+/* Nav */
+nav{border-bottom:1px solid rgba(255,255,255,.06);padding:16px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.02em}
+.logo-icon{width:28px;height:28px;background:#8b5cf6;border-radius:6px;display:grid;place-items:center;font-size:14px}
+.nav-links{display:flex;gap:24px}
+.nav-links a{color:#94a3b8;font-size:14px;transition:color .2s}
+.nav-links a:hover{color:#fff}
+
+/* Hero */
+.hero{text-align:center;padding:96px 0 72px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:999px;padding:6px 16px;font-size:13px;color:#c4b5fd;margin-bottom:28px}
+h1{font-size:56px;font-weight:800;line-height:1.05;margin-bottom:16px;letter-spacing:-.03em}
+.gradient{background:linear-gradient(135deg,#a78bfa,#f472b6);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero>p{color:#94a3b8;font-size:18px;max-width:560px;margin:0 auto 32px;line-height:1.6}
+.btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-weight:600;font-size:15px;transition:all .2s;border:none;cursor:pointer}
+.btn-primary{background:#8b5cf6;color:#fff}
+.btn-primary:hover{background:#7c3aed;transform:translateY(-1px)}
+.btn-secondary{background:rgba(255,255,255,.05);color:#fff;border:1px solid rgba(255,255,255,.06)}
+.btn-secondary:hover{background:rgba(255,255,255,.08)}
+.meta-row{display:flex;gap:24px;justify-content:center;margin-top:20px;color:#94a3b8;font-size:13px}
+
+/* Pipeline */
+.pipeline{border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:40px 0}
+.pipeline-inner{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.pipe-step{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px 20px;min-width:170px}
+.pipe-icon{width:32px;height:32px;background:rgba(139,92,246,.1);border-radius:8px;display:grid;place-items:center;font-size:16px}
+.pipe-label{font-size:14px;font-weight:500}
+.pipe-sub{font-size:11px;color:#94a3b8}
+.pipe-arrow{color:#475569;font-size:20px}
+
+/* Sections */
+section{padding:72px 0;border-top:1px solid rgba(255,255,255,.06)}
+h2{font-size:32px;font-weight:700;margin-bottom:8px;letter-spacing:-.02em}
+.section-sub{color:#94a3b8;margin-bottom:40px;font-size:16px}
+
+/* Features */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:28px;transition:all .2s}
+.card:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)}
+.card-icon{width:40px;height:40px;background:rgba(139,92,246,.1);border-radius:10px;display:grid;place-items:center;font-size:20px;margin-bottom:16px}
+.card h3{font-size:17px;font-weight:600;margin-bottom:8px}
+.card p{font-size:14px;color:#94a3b8;line-height:1.5}
+
+/* Steps */
+.steps-inner{max-width:520px;margin:0 auto}
+.step{display:flex;gap:16px;margin-bottom:28px}
+.step:last-child{margin-bottom:0}
+.step-num{width:36px;height:36px;background:#8b5cf6;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:700;flex-shrink:0}
+.step h4{font-weight:600;margin-bottom:4px;font-size:16px}
+.step p{color:#94a3b8;font-size:14px;line-height:1.5}
+
+/* Cost */
+.cost-table{width:100%;max-width:480px;margin:0 auto;border-collapse:collapse;font-size:15px}
+.cost-table th{text-align:left;padding:12px 16px;color:#94a3b8;font-weight:500;font-size:13px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid rgba(255,255,255,.1)}
+.cost-table td{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.cost-table tr:last-child td{border-bottom:none;font-weight:700;color:#a78bfa;font-size:16px}
+
+/* CTA */
+.cta{text-align:center;padding:80px 0}
+.cta-box{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:56px 32px}
+.cta-box h2{margin-bottom:8px}
+.cta-box>p{color:#94a3b8;margin-bottom:32px;font-size:16px}
+
+/* Footer */
+footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 0;color:#94a3b8;font-size:13px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between}
+.footer-inner a{color:#94a3b8;transition:color .2s}
+.footer-inner a:hover{color:#fff}
+
+/* Mobile */
+@media(max-width:640px){
+h1{font-size:40px}
+.nav-links{display:none}
+.pipeline-inner{flex-direction:column}
+.pipe-arrow{transform:rotate(90deg)}
+.footer-inner{flex-direction:column;gap:12px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="container nav-inner">
+  <div class="logo"><div class="logo-icon">&#9654;</div>ReelBot</div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="https://github.com/Rakesh-cxd/reelbot" target="_blank">GitHub</a>
+  </div>
+</div></nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="badge">&#10024; Free &middot; BYO-keys &middot; No server</div>
+    <h1>Turn ideas into<br><span class="gradient">viral videos</span></h1>
+    <p>ReelBot chains Claude &rarr; ElevenLabs &rarr; Grok to produce TikTok / Reels / Shorts-ready videos. Pick a genre, click Start, and publish.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://github.com/Rakesh-cxd/Reelbot-Download/releases/latest" target="_blank">&#11015; Download for macOS</a>
+      <a class="btn btn-primary" href="https://github.com/Rakesh-cxd/Reelbot-Download/releases/latest" target="_blank">&#11015; Download for Windows</a>
+      <a class="btn btn-secondary" href="https://github.com/Rakesh-cxd/reelbot" target="_blank">&#9733; View on GitHub</a>
+    </div>
+    <div class="meta-row">
+      <span>&#63743; macOS 12+</span>
+      <span>&#128187; Windows 10+</span>
+      <span>&#128336; 2 min setup</span>
+    </div>
+  </div>
+</section>
+
+<div class="pipeline"><div class="container">
+  <div class="pipeline-inner">
+    <div class="pipe-step"><div class="pipe-icon">&#128421;</div><div><div class="pipe-label">Claude / OpenAI</div><div class="pipe-sub">Script &amp; topic</div></div></div>
+    <div class="pipe-arrow">&#10132;</div>
+    <div class="pipe-step"><div class="pipe-icon">&#9889;</div><div><div class="pipe-label">ElevenLabs</div><div class="pipe-sub">Voiceover</div></div></div>
+    <div class="pipe-arrow">&#10132;</div>
+    <div class="pipe-step"><div class="pipe-icon">&#127909;</div><div><div class="pipe-label">Grok</div><div class="pipe-sub">Video clips</div></div></div>
+    <div class="pipe-arrow">&#10132;</div>
+    <div class="pipe-step"><div class="pipe-icon">&#9989;</div><div><div class="pipe-label">FFmpeg</div><div class="pipe-sub">Final video</div></div></div>
+  </div>
+</div></div>
+
+<section id="features"><div class="container">
+  <h2>Everything you need</h2>
+  <p class="section-sub">No cloud subscription. No watermark. Your keys, your videos, your machine.</p>
+  <div class="grid">
+    <div class="card"><div class="card-icon">&#128221;</div><h3>Template &rarr; Video</h3><p>Create custom Claude prompt templates. Reuse them for consistent style across unlimited videos.</p></div>
+    <div class="card"><div class="card-icon">&#127919;</div><h3>Genre &rarr; Video</h3><p>Pick a genre and hit Start. ReelBot picks an original topic, writes the script, and generates everything.</p></div>
+    <div class="card"><div class="card-icon">&#128203;</div><h3>Title &rarr; Video</h3><p>Paste a list of titles. ReelBot batch-generates videos for each one in parallel.</p></div>
+    <div class="card"><div class="card-icon">&#128274;</div><h3>100% Local</h3><p>API keys stay on your Mac. Videos save to ~/ReelBot-GrokStudio/. Nothing uploads to us.</p></div>
+    <div class="card"><div class="card-icon">&#9889;</div><h3>Parallel Generation</h3><p>Run 4&ndash;8 Chrome tabs generating Grok clips simultaneously. Finish a 1-minute video in minutes.</p></div>
+    <div class="card"><div class="card-icon">&#10024;</div><h3>Per-Template History</h3><p>Each template tracks its own topic history so you never repeat topics within a style.</p></div>
+  </div>
+</div></section>
+
+<section id="how-it-works"><div class="container">
+  <h2>How it works</h2>
+  <p class="section-sub">Three input modes. One pipeline. Zero cloud costs.</p>
+  <div class="steps-inner">
+    <div class="step"><div class="step-num">1</div><div><h4>Choose your input</h4><p>Genre mode auto-picks topics. Title mode uses your ideas. Template mode uses your custom prompt.</p></div></div>
+    <div class="step"><div class="step-num">2</div><div><h4>Configure &amp; Start</h4><p>Pick length, voice, thread count. Click Start Generation. ReelBot handles the rest.</p></div></div>
+    <div class="step"><div class="step-num">3</div><div><h4>Publish</h4><p>final.mp4 appears in your output folder. Drag, drop, post.</p></div></div>
+  </div>
+</div></section>
+
+<section><div class="container">
+  <h2 style="text-align:center;margin-bottom:8px">Cost per video</h2>
+  <p class="section-sub" style="text-align:center">For a 1-minute video with ~10 Grok clips</p>
+  <table class="cost-table">
+    <tr><th>Service</th><th>Usage</th><th>Cost</th></tr>
+    <tr><td>Claude Sonnet 4</td><td>~2,000 tokens</td><td>~$0.03</td></tr>
+    <tr><td>ElevenLabs Turbo</td><td>~1,000 chars</td><td>~$0.03</td></tr>
+    <tr><td>Grok</td><td>X subscription</td><td>$0.00</td></tr>
+    <tr><td>Total</td><td></td><td>~$0.06 / video</td></tr>
+  </table>
+</div></section>
+
+<section class="cta"><div class="container">
+  <div class="cta-box">
+    <h2>Ready to create?</h2>
+    <p>Download ReelBot for free. macOS 12+ and Windows 10+ supported.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://github.com/Rakesh-cxd/Reelbot-Download/releases/latest" target="_blank">&#11015; Download Latest Release</a>
+    </div>
+    <p style="color:#94a3b8;font-size:13px;margin-top:20px">Or <a href="https://github.com/Rakesh-cxd/reelbot" target="_blank" style="color:#a78bfa">read the README</a> for build-from-source instructions.</p>
+  </div>
+</div></section>
+
+<footer><div class="container footer-inner">
+  <div class="logo" style="font-size:15px"><div class="logo-icon" style="width:24px;height:24px;font-size:12px">&#9654;</div>ReelBot</div>
+  <div><a href="https://github.com/Rakesh-cxd/reelbot" target="_blank">GitHub</a> &middot; MIT License</div>
+</div></footer>
+
+</body>
+</html>
