@@ -181,14 +181,16 @@ h1{font-size:40px}
   <p class="section-sub" style="text-align:center">macOS shows a security warning the first time you open ReelBot &mdash; this is normal for apps not signed with a paid Apple Developer ID.</p>
   <div class="install-note">
     <h3>&#9888;&#65039; If macOS says "ReelBot is damaged" or "cannot be opened"</h3>
-    <p><strong>Fastest fix</strong> &mdash; open Terminal and run:</p>
-    <pre>xattr -cr /Applications/ReelBot.app</pre>
+    <p><strong>Fastest fix</strong> &mdash; open Terminal and run (it will ask for your Mac password):</p>
+    <pre>sudo xattr -dr com.apple.quarantine /Applications/ReelBot.app</pre>
     <p>Then double-click ReelBot from Applications. The warning will not appear again.</p>
-    <p style="margin-top:16px"><strong>Alternative</strong> &mdash; right-click the app and choose Open:</p>
+    <p style="margin-top:10px;font-size:13px;color:#94a3b8">If you see <code>Operation not permitted</code>, you forgot the <code>sudo</code> &mdash; copy the full command above.</p>
+    <p style="margin-top:16px"><strong>Alternative</strong> &mdash; right-click the app and choose Open (no Terminal needed):</p>
     <ol>
       <li>Drag <code>ReelBot.app</code> from the DMG into <code>/Applications</code>.</li>
       <li>Right-click (or Control-click) <code>ReelBot.app</code> and choose <strong>Open</strong>.</li>
       <li>Click <strong>Open</strong> again in the dialog. macOS remembers your choice.</li>
+      <li>If macOS still blocks it, go to <strong>System Settings &rarr; Privacy &amp; Security</strong>, scroll down, and click <strong>Open Anyway</strong> next to ReelBot.</li>
     </ol>
     <p style="margin-top:16px;font-size:13px;color:#94a3b8">Why? ReelBot is open-source and free, so it's not signed with a $99/year Apple Developer ID. The app is safe &mdash; you can inspect the source on GitHub.</p>
   </div>
