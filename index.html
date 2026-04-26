@@ -69,6 +69,15 @@ h2{font-size:32px;font-weight:700;margin-bottom:8px;letter-spacing:-.02em}
 .cost-table td{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
 .cost-table tr:last-child td{border-bottom:none;font-weight:700;color:#a78bfa;font-size:16px}
 
+/* Install notes */
+.install-note{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:14px;padding:24px;margin:0 auto;max-width:680px}
+.install-note h3{font-size:16px;font-weight:600;margin-bottom:12px;color:#fbbf24;display:flex;align-items:center;gap:8px}
+.install-note p{color:#cbd5e1;font-size:14px;margin-bottom:10px;line-height:1.6}
+.install-note code{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);padding:3px 8px;border-radius:6px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#a78bfa}
+.install-note pre{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);padding:12px 14px;border-radius:8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#a78bfa;overflow-x:auto;margin:8px 0 12px}
+.install-note ol{padding-left:20px;color:#cbd5e1;font-size:14px}
+.install-note li{margin-bottom:6px}
+
 /* CTA */
 .cta{text-align:center;padding:80px 0}
 .cta-box{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:56px 32px}
@@ -116,6 +125,7 @@ h1{font-size:40px}
       <span>&#128187; Windows 10+</span>
       <span>&#128336; 2 min setup</span>
     </div>
+    <p style="color:#94a3b8;font-size:13px;margin-top:18px">macOS users: see <a href="#install" style="color:#a78bfa;text-decoration:underline">install instructions</a> if you get a security warning.</p>
   </div>
 </section>
 
@@ -164,6 +174,24 @@ h1{font-size:40px}
     <tr><td>Grok</td><td>X subscription</td><td>$0.00</td></tr>
     <tr><td>Total</td><td></td><td>~$0.06 / video</td></tr>
   </table>
+</div></section>
+
+<section id="install"><div class="container">
+  <h2 style="text-align:center;margin-bottom:8px">Installing on macOS</h2>
+  <p class="section-sub" style="text-align:center">macOS shows a security warning the first time you open ReelBot &mdash; this is normal for apps not signed with a paid Apple Developer ID.</p>
+  <div class="install-note">
+    <h3>&#9888;&#65039; If macOS says "ReelBot is damaged" or "cannot be opened"</h3>
+    <p><strong>Fastest fix</strong> &mdash; open Terminal and run:</p>
+    <pre>xattr -cr /Applications/ReelBot.app</pre>
+    <p>Then double-click ReelBot from Applications. The warning will not appear again.</p>
+    <p style="margin-top:16px"><strong>Alternative</strong> &mdash; right-click the app and choose Open:</p>
+    <ol>
+      <li>Drag <code>ReelBot.app</code> from the DMG into <code>/Applications</code>.</li>
+      <li>Right-click (or Control-click) <code>ReelBot.app</code> and choose <strong>Open</strong>.</li>
+      <li>Click <strong>Open</strong> again in the dialog. macOS remembers your choice.</li>
+    </ol>
+    <p style="margin-top:16px;font-size:13px;color:#94a3b8">Why? ReelBot is open-source and free, so it's not signed with a $99/year Apple Developer ID. The app is safe &mdash; you can inspect the source on GitHub.</p>
+  </div>
 </div></section>
 
 <section class="cta"><div class="container">
